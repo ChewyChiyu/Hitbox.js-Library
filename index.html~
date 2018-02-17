@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Hitbox Lib <title>
+    <style>
+	#window{
+	    height:800px
+	    width:800px
+	    border: 5px solid black
+	}
+	body{
+	background-color: blue
+	}
+    </style>
+  </head>
+  <body>
+    <canvas id="window"></canvas>
+  </body>
+</html>
