@@ -42,8 +42,14 @@ CIRCLE.prototype = {
             return(dist(this.x,this.y,hitbox.x,hitbox.y) <= hitbox.r + this.r)
         }
         if(hitbox instanceof RECTANGLE){
-            var rectMask = {x:hitbox.x,y:hitbox.y,w:hitbox.w+(this.r),h:hitbox.h+(this.r)}
-            return(this.x + this.r > rectMask.x && this.x < rectMask.x + rectMask.w && this.y + this.r > rectMask.y && this.y < rectMask.y + rectMask.h)    
+            var closestX = clamp(this.x, hitbox.x, hitbox.x+hitbox.w)
+            var closestY = clamp(this.y, hitbox.y, hitbox.y+hitbox.h)
+
+            var distanceX = this.x - closestX
+            var distanceY = this.y - closestY
+            
+            var distanceSquared = (distanceX * distanceX) + (distanceY * distanceY)
+            return distanceSquared < (this.r * this.r)  
         }
     }
 }
@@ -80,10 +86,20 @@ RECTANGLE.prototype = {
             return(this.x+this.w >= hitbox.x && hitbox.x+hitbox.w >= this.x && this.y+this.h >= hitbox.y && hitbox.y+hitbox.h >= this.y)
         }
         if(hitbox instanceof CIRCLE){
-            var rectMask = {x:this.x,y:this.y,w:this.w+(hitbox.r),h:this.h+(hitbox.r)}
-            return(hitbox.x + hitbox.r > rectMask.x && hitbox.x < rectMask.x + rectMask.w && hitbox.y + hitbox.r > rectMask.y && hitbox.y < rectMask.y + rectMask.h)    
+            var closestX = clamp(hitbox.x, this.x, this.x+this.w)
+            var closestY = clamp(hitbox.y, this.y, this.y+this.h)
+
+            var distanceX = hitbox.x - closestX
+            var distanceY = hitbox.y - closestY
+            
+            var distanceSquared = (distanceX * distanceX) + (distanceY * distanceY)
+            return distanceSquared < (hitbox.r * hitbox.r)
         }
-    }
+    }   
+}
+
+function clamp(num, min, max) {
+  return num <= min ? min : num >= max ? max : num;
 }
 
 function dist(a,b,c,d){

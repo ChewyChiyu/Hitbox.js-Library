@@ -2,23 +2,23 @@ window.onload = function(){
     const canvas = document.getElementById("window")
     const context = canvas.getContext("2d")
     context.translate(.5,.5)
-    var circle = HITBOX.CIRCLE(125,30,40)
-    var rectangle = HITBOX.RECTANGLE(100,200,100,100)    
+    var circle = HITBOX.CIRCLE(425,430,80)
+    var rectangle = HITBOX.RECTANGLE(100,200,30,30)    
     
     window.addEventListener("keydown", function (event) {
 	
 switch(event.key){
 	case "a":
-    circle.setLocation(circle.x-5,circle.y)
+    rectangle.setLocation(rectangle.x-5,rectangle.y)
 	break
     case "s":
-    circle.setLocation(circle.x,circle.y+5)
+    rectangle.setLocation(rectangle.x,rectangle.y+5)
     break
     case "d":
-    circle.setLocation(circle.x+5,circle.y)
+    rectangle.setLocation(rectangle.x+5,rectangle.y)
     break
     case "w":
-    circle.setLocation(circle.x,circle.y-5)
+    rectangle.setLocation(rectangle.x,rectangle.y-5)
     break
 	default:
 	break;
