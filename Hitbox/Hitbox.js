@@ -110,7 +110,7 @@ function dist(a,b,c,d){
 function isNumber(){
     for(var i = 0; i < arguments.length; i++){
         var num = arguments[i]
-        if(!Number.isInteger(num)){ return false }
+        if(!(typeof num == 'number')){ return false }
     }
     return true
 }
